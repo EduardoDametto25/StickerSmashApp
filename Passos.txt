@@ -1,5 +1,5 @@
 configurar o Git local
-git config --global user.name EduardoDametto
+git config --global user.name EduardoDametto25
 git config --global user.email damettoed@gmail.com
 
 Documento oficial do Expo:
@@ -20,6 +20,7 @@ npx expo install react-dom react-native-web @expo/webpack-config
 Executar o projeto no navegador:
 npx expo start
 
+lembrar npm i( tem que estar dentro da pasta)
 Executar o projeto no celular:
 npx expo start --localhost --android
 
