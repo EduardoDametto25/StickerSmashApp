@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import ImageViewer from './src/components/ImageViewer';
@@ -10,6 +10,8 @@ import EmojiPicker from './src/components/EmojiPicker';
 import EmojiList from './src/components/EmojiList';
 import EmojiSticker from './src/components/EmojiSticker';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import * as MediaLibrary from 'expo-media-library';
+import { captureRef } from 'react-native-view-shot';
 
 const PlaceholderImage = require('./assets/images/background-image.png');
 
@@ -18,6 +20,12 @@ export default function App() {
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const[pickedEmoji, setPickedEmoji] = useState(null);
+  const [status, requestPermission] = MediaLibrary.usePermissions();
+  const imageRef = useRef();
+
+  if (status === null ) {
+    requestPermission();
+  }
 
   const onReset = () => {
     setShowAppOptions(false);
@@ -28,7 +36,7 @@ export default function App() {
   }
 
   const onSaveImageAsync = () => {
-    //
+    try 
   }
 
   const onModalClose = () => {
@@ -51,12 +59,14 @@ export default function App() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer
-          placeholderImageSource={PlaceholderImage}
-          selectedImage={selectedImage}
-        />
-        {pickedEmoji && 
-        <EmojiSticker imageSize={40} stickerSourse={pickedEmoji } />} 
+        <View ref={imageRef} collapsable={false}>
+          <ImageViewer
+            placeholderImageSource={PlaceholderImage}
+            selectedImage={selectedImage}
+          />
+          {pickedEmoji && 
+          <EmojiSticker imageSize={40} stickerSourse={pickedEmoji } />} 
+        </View>
       </View>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
