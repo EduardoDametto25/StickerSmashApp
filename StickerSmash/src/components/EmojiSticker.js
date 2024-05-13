@@ -1,9 +1,9 @@
 import { View, Image } from 'react-native'
 import React from 'react'
-import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle, useSharedValue, withSpring }  from 'react-native-reanimated'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
-export default function EmojiSticker({ imageSize, stickerSourse}) {
+export default function EmojiSticker({ imageSize, stickerSource }) {
   const scaleImage = useSharedValue(imageSize);
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -37,20 +37,20 @@ export default function EmojiSticker({ imageSize, stickerSourse}) {
         },
         {
           translateY: translateY.value
-        },
+        }
       ]
     }
   })
 
   return (
     <GestureDetector gesture={drag}>
-      <Animated.View style={[containerStyle,{ top: -360}]}>
+      <Animated.View style={[containerStyle, { top: -350 }]}>
         <GestureDetector gesture={doubleTap}>
-        <Animated.Image
-          source={stickerSourse}
-          resizeMode='contain'
-          style={[imageStyle, {width: imageSize, height: imageSize}]} 
-        />
+          <Animated.Image
+            source={stickerSource}
+            resizeMode='contain'
+            style={[imageStyle, { width: imageSize, height: imageSize }]}
+          />
         </GestureDetector>
       </Animated.View>
     </GestureDetector>

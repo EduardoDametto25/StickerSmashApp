@@ -1,19 +1,19 @@
-import React, { Children } from 'react'
-import { StyleSheet, Text, View,Modal, Pressable } from 'react-native'
-import {MaterialIcons} from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function EmojiPicker({ isVisible, children, onClose }) {
   return (
     <Modal animationType='slide' transparent={true} visible={isVisible}>
-        <View style={styles.modalContent}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Escolha um Sticker</Text>
-            <Pressable onPress={onClose}>
-              <MaterialIcons name='close' color="#fff" size={22} />
-            </Pressable>
-          </View>
-          { children }
+      <View style={styles.modalContent}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Escolha um Sticker</Text>
+          <Pressable onPress={onClose}>
+            <MaterialIcons name="close" color="#fff" size={22} />
+          </Pressable>
         </View>
+        { children }
+      </View>
     </Modal>
   )
 }
@@ -34,19 +34,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     paddingHorizontal: 20,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
-    color:'#fff',
+    color: '#fff',
     fontSize: 16,
   },
   pickerContainer: {
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center',
-    paddingHorizontal:50,
-    paddingVertical:20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 50,
+    paddingVertical: 20,
   },
 })
